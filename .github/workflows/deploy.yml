@@ -10,25 +10,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Baixar o código
       - name: Checkout código
         uses: actions/checkout@v3
 
-      # 2. Configurar versão do Python
       - name: Configurar Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.12"
+          python-version: '3.12'
 
-      # 3. Instalar dependências
       - name: Instalar dependências
         run: |
           pip install -r requirements.txt
 
-      # 4. Fazer deploy para Azure WebApp via Web Deploy (MSDeploy)
-      - name: Publicar no Azure WebApp
+      - name: Deploy no Azure WebApp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: "app-gs-ia-emprego"  # nome EXATO do App Service
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISH_PROFILE }}  # sua secret
-          slot-name: "production"
+          app-name: "app-gs-ia-emprego"
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISH_PROFILE }}
+          package: .
+
