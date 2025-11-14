@@ -16,7 +16,7 @@ jobs:
       - name: Configurar Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.12'
+          python-version: "3.12"
 
       - name: Instalar dependências
         run: |
@@ -25,7 +25,8 @@ jobs:
       - name: Deploy no Azure WebApp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: "app-gs-ia-emprego"
+          app-name: "app-gs-ia-emprego"   # exatamente como está no Azure
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISH_PROFILE }}
           package: .
+
 
